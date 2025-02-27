@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册与登录</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-toggle">
+                <button class="toggle-btn" onclick="toggleForm('login')">登录</button>
+                <button class="toggle-btn" onclick="toggleForm('register')">注册</button>
+            </div>
+            <div id="login-form" class="form">
+                <h2>登录</h2>
+                <form id="login">
+                    <input type="text" placeholder="用户名" id="login-username" required>
+                    <input type="password" placeholder="密码" id="login-password" required>
+                    <button type="button" onclick="login()">登录</button>
+                </form>
+            </div>
+            <div id="register-form" class="form" style="display: none;">
+                <h2>注册</h2>
+                <form id="register">
+                    <input type="text" placeholder="用户名" id="register-username" required>
+                    <input type="password" placeholder="密码" id="register-password" required>
+                    <button type="button" onclick="register()">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
