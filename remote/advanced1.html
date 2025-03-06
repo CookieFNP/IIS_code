@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高级实验</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .formula {
+            font-size: 1.0em;
+            color: #444;
+        }
+
+        .advantages {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+            .advantages li {
+                margin-bottom: 10px;
+            }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="title">高级实验</div>
+    <div id="platform-container" class="platform-container">
+        <div class="sidebar">
+            <div class="menu-item" onclick="showExperiments('basic')">基础实验</div>
+            <div class="menu-item active" onclick="showExperiments('advanced')">高级实验</div>
+            <div class="menu-item" onclick="showExperiments('simulation')">模拟仪器</div>
+        </div>
+
+        <div class="main_shiyan">
+            <h8>sobel算子</h8>
+            <div class="shiyan-item">
+                <div class="container">
+                    <h3>FPGA实现Sobel算子实验简介</h3>
+                    <h4>一、实验背景</h4>
+                    <p>在数字图像处理领域，边缘检测是图像分析和计算机视觉中的一个重要环节。边缘通常是指图像中像素灰度值发生显著变化的区域，这些区域往往对应于物体的轮廓、纹理变化或场景中的不同物体分界线。准确地检测边缘对于图像分割、目标识别、特征提取等后续处理任务至关重要。</p>
+                    <p>Sobel算子是一种经典的边缘检测算法，因其简单高效而被广泛应用。它通过计算图像在水平和垂直方向上的梯度来检测边缘。由于其计算过程相对简单，适合在硬件上实现，因此非常适合使用FPGA（现场可编程门阵列）进行加速处理。</p>
+
+                    <h4>二、Sobel算子原理简介</h4>
+                    <h5>（一）Sobel卷积核</h5>
+                    <p>Sobel算子的两个卷积核定义如下：</p>
+                    <div class="formula">
+                        <strong>水平方向卷积核（\(G_x\)）：</strong>
+                        <pre>
+[-1,  0,  1]
+[-2,  0,  2]
+[-1,  0,  1]
+            </pre>
+                        <strong>垂直方向卷积核（\(G_y\)）：</strong>
+                        <pre>
+[-1, -2, -1]
+[ 0,  0,  0]
+[ 1,  2,  1]
+            </pre>
+                    </div>
+
+                    <h5>（二）边缘检测过程</h5>
+                    <p>对于图像中的每个像素点，Sobel算子通过以下步骤计算其边缘强度：</p>
+                    <ol>
+                        <li><strong>卷积操作：</strong>将水平和垂直卷积核分别与以当前像素为中心的3×3邻域进行卷积运算，得到两个梯度分量\(G_x\)和\(G_y\)。</li>
+                        <li>
+                            <strong>梯度幅值计算：</strong>计算水平和垂直梯度分量的幅值，通常使用以下公式：
+                            <div class="formula">
+                                \[
+                                \text{Gradient Magnitude} = \sqrt{G_x^2 + G_y^2}
+                                \]
+                            </div>
+                            为了简化计算，通常使用近似公式：
+                            <div class="formula">
+                                \[
+                                \text{Gradient Magnitude} = |G_x| + |G_y|
+                                \]
+                            </div>
+                        </li>
+                        <li><strong>阈值处理：</strong>将计算得到的梯度幅值与预设的阈值进行比较，大于阈值的点被认为是边缘点。</li>
+                    </ol>
+
+                    <h4>三、FPGA实现的优势</h4>
+                    <p>FPGA（现场可编程门阵列）是一种可编程的硬件设备，能够通过硬件描述语言（如Verilog HDL或VHDL）进行定制化设计。与传统的软件实现相比，FPGA具有以下优势：</p>
+                    <ul class="advantages">
+                        <li><strong>并行处理能力：</strong>FPGA能够同时处理多个像素的计算，显著提高边缘检测的速度。</li>
+                        <li><strong>低延迟：</strong>FPGA的硬件架构使得数据处理几乎无延迟，适合实时图像处理应用。</li>
+                        <li><strong>可定制性：</strong>FPGA可以根据具体需求进行优化，例如调整卷积核大小、阈值处理方式等。</li>
+                        <li><strong>可定制性：</strong>FPGA可以根据具体需求进行优化，例如调整卷积核大小、阈值处理方式等。</li>
+                        <li><strong>资源利用率高：</strong>通过合理设计，FPGA能够高效利用其逻辑资源和存储资源。</li>
+                    </ul>
+
+                    <h4>四、实验目标</h4>
+                    <p>通过本次实验，同学们将：</p>
+                    <ul>
+                        <li>理解Sobel算子的原理及其在图像边缘检测中的应用。</li>
+                        <li>学会使用Verilog HDL或VHDL语言实现Sobel算子的硬件逻辑。</li>
+                        <li>掌握FPGA开发的基本流程，包括设计、仿真和硬件验证。</li>
+                        <li>培养解决实际问题的能力，提高对数字图像处理和硬件设计的兴趣。</li>
+                    </ul>
+                </div>
+
+            </div>
+    <img src="next_button.png" alt="下一页" class="next-page-button" onclick="goToNextPage_gaoji1()">
+    <script src="scripts.js"></script>
+</body>
+</html>

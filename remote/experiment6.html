@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础实验</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="title">基础实验</div>
+    <img src="person.png" alt="个人" class="person"  onclick="backhome()" >
+
+    <div id="platform-container" class="platform-container">
+        <div class="sidebar">
+            <div class="menu-item active" onclick="showExperiments('basic')">基础实验</div>
+            <div class="menu-item" onclick="showExperiments('advanced')">高级实验</div>
+            <div class="menu-item" onclick="showExperiments('simulation')">模拟仪器</div>
+        </div>
+
+        <div class="main_shiyan">
+            <p>流水灯</p>
+            <div class="shiyan-item">同学们，今天我们来学习一个有趣的FPGA实验——流水灯。流水灯是一种经典的电子实验项目，通过控制多个LED灯依次点亮和熄灭，形成像流水一样的动态效果。在FPGA中，我们可以通过编写代码来实现这个功能。具体来说，我们会用到时钟信号来控制LED灯的闪烁频率，同时利用移位寄存器来实现灯的顺序点亮和熄灭。这个实验可以帮助大家理解FPGA的基本逻辑控制，以及如何通过简单的代码实现动态效果。希望大家认真阅读代码，理解其中的逻辑关系，然后上传代码到实验平台进行验证。通过这个实验，你们可以直观地看到代码如何驱动硬件设备，感受FPGA编程的魅力！</div>
+        </div>
+
+
+        <div class="sidebar right-sidebar">
+            <div class="progress-bar">
+                <div class="progress-label">难度： <span id="online-users">⭐</span></div>
+                <div class="progress-label">提交通过率 <span id="online-users">97%</span></div>
+                <div class="progress-label">当前在线人数 <span id="pass-rate">6</span></div>
+            </div>
+        </div>
+    </div>
+    <img src="next_button.png" alt="下一页" class="next-page-button" onclick="goToNextPage_jichu6()">
+    <script src="scripts.js"></script>
+</body>
+</html>

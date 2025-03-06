@@ -1,0 +1,20 @@
+module counter (
+    input clk,          // 时钟信号
+    input rst_n,        // 复位信号，低电平有效
+    output reg [3:0] count // 计数值（0-9）
+);
+
+// 参数定义
+parameter COUNT_MAX = 4'd9; // 最大计数值
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        count <= 0; // 复位计数器
+    end else if (count == COUNT_MAX) begin
+        count <= 0; // 计数溢出，重新开始
+    end else begin
+        count <= count + 1; // 计数器递增
+    end
+end
+
+endmodule

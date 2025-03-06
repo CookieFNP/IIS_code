@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础实验</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="title">基础实验</div>
+    <img src="person.png" alt="个人" class="person"  onclick="backhome()">
+    <img src="finish.png" alt="完成" class="finish" onclick="Finish()">
+    <div id="platform-container" class="platform-container">
+        <div class="sidebar">
+            <div class="menu-item active" onclick="showExperiments('basic')">基础实验</div>
+            <div class="menu-item" onclick="showExperiments('advanced')">高级实验</div>
+            <div class="menu-item" onclick="showExperiments('simulation')">模拟仪器</div>
+        </div>
+
+        <div class="main_shiyan">
+            <p>随机数生成器</p>
+            <video id="video" width="640" height="480" autoplay></video>
+            <canvas id="canvas" width="640" height="480"></canvas>
+
+        </div>
+
+
+        <div class="sidebar right-sidebar">
+            <div class="button-group">
+                <button id="button1" class="custom-button">上传文件</button>
+                <button id="button2" class="custom-button">重启板卡</button>
+                <button id="button3" class="custom-button">归还板卡</button>
+                <button id="fullscreen-btn" class="fullscreen-btn">全屏显示</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

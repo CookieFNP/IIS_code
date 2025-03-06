@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础实验</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="title">基础实验</div>
+    <img src="person.png" alt="个人" class="person" onclick="backhome()">
+
+    <div id="platform-container" class="platform-container">
+        <div class="sidebar">
+            <div class="menu-item active" onclick="showExperiments('basic')">基础实验</div>
+            <div class="menu-item" onclick="showExperiments('advanced')">高级实验</div>
+            <div class="menu-item" onclick="showExperiments('simulation')">模拟仪器</div>
+        </div>
+
+        <div class="main_shiyan">
+            <p>蜂鸣器</p>
+            <div class="shiyan-item">
+                同学们，今天我们来学习一个有趣的FPGA实验——蜂鸣器控制。蜂鸣器是一种常见的发声设备，通过控制其电信号的频率和时长，可以发出不同音调的声音。在FPGA中，我们可以通过编写代码来精确控制蜂鸣器的发声，实现简单的音乐播放或声音提示功能。
+                具体来说，我们会用到时钟信号来控制发声的频率，同时利用计数器和定时器来实现音符的持续时间和间隔。通过编写Verilog HDL或VHDL代码，我们可以定义不同的音调和节奏，让蜂鸣器发出悦耳的音乐。
+                这个实验不仅可以帮助大家理解FPGA的时钟控制和定时逻辑，还能让大家感受到硬件编程在实际应用中的趣味性。希望大家认真阅读代码，理解其中的逻辑关系，然后上传代码到实验平台进行验证。通过这个实验，你们可以直观地看到代码如何驱动硬件设备，感受FPGA编程的魅力！
+                
+            </div>
+        </div>
+
+
+        <div class="sidebar right-sidebar">
+            <div class="progress-bar">
+                <div class="progress-label">难度： <span id="online-users">⭐</span></div>
+                <div class="progress-label">提交通过率 <span id="online-users">97%</span></div>
+                <div class="progress-label">当前在线人数 <span id="pass-rate">6</span></div>
+            </div>
+        </div>
+    </div>
+    <img src="next_button.png" alt="下一页" class="next-page-button" onclick="goToNextPage_jichu6()">
+    <script src="scripts.js"></script>
+</body>
+</html>
+

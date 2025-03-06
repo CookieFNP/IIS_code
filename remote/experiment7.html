@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础实验</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="title">基础实验</div>
+    <img src="person.png" alt="个人" class="person" onclick="backhome()">
+
+    <div id="platform-container" class="platform-container">
+        <div class="sidebar">
+            <div class="menu-item active" onclick="showExperiments('basic')">基础实验</div>
+            <div class="menu-item" onclick="showExperiments('advanced')">高级实验</div>
+            <div class="menu-item" onclick="showExperiments('simulation')">模拟仪器</div>
+        </div>
+
+        <div class="main_shiyan">
+            <p>随机数生成器</p>
+            <div class="shiyan-item">
+                同学们，今天我们来学习一个有趣的FPGA实验——随机数生成器。随机数在许多应用中都非常有用，比如游戏、加密等。在本实验中，我们使用线性反馈移位寄存器（LFSR）生成伪随机数，并通过数码管或LED显示结果。希望大家认真阅读代码，理解伪随机数生成的原理，并上传代码到实验平台进行验证。通过这个实验，你们可以直观地看到FPGA如何生成随机数，感受硬件编程的趣味性！
+           
+            </div>
+        </div>
+
+
+        <div class="sidebar right-sidebar">
+            <div class="progress-bar">
+                <div class="progress-label">难度： <span id="online-users">⭐</span></div>
+                <div class="progress-label">提交通过率 <span id="online-users">97%</span></div>
+                <div class="progress-label">当前在线人数 <span id="pass-rate">6</span></div>
+            </div>
+        </div>
+    </div>
+    <img src="next_button.png" alt="下一页" class="next-page-button" onclick="goToNextPage_jichu7()">
+    <script src="scripts.js"></script>
+</body>
+</html>
+

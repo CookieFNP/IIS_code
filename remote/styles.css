@@ -1,0 +1,297 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e6e6ff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    background-color: #551a8b;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #e6e6ff;
+}
+
+.login-container h2 {
+    color: #551a8b;
+}
+
+.login-container input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-container button {
+    padding: 10px 20px;
+    background-color: #551a8b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #7a28a8;
+}
+
+.platform-container {
+    display: flex;
+    flex: 1;
+    background-color: #e6e6ff;
+    overflow: auto;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #551a8b;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar .menu-item {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.sidebar .menu-item.active {
+    background-color: #7a28a8;
+    padding: 5px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #e6e6ff;
+}
+
+.main_shiyan {
+    display: flex;
+    flex-direction: column; /* 子元素垂直排列 */
+    align-items: center; /* 水平居中子元素 */
+    padding: 20px;
+    font-size: 30px;
+    width: 80%; /* 或其他固定宽度 */
+    margin: 0 auto; /* 只水平居中，垂直方向上保持在顶部 */
+}
+
+.shiyan-item {
+    width: 800px;
+    height: auto;
+    background-color: white;
+    border: 2px solid #bf8cef;
+    border-radius: 20px; /* 大圆角 */
+    font-size: 20px;
+    color: #551a8b;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 20px; /* 与文字之间增加间距 */
+    display: flex;
+    justify-content: center; /* 文字水平居中 */
+    align-items: center; /* 文字垂直居中 */
+    padding: 20px; /* 增加内边距，让文字与边框有空隙 */
+}
+
+
+/* 基础实验列表 */
+#experiment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.experiment-item {
+    width: 250px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.experiment-item::before {
+    content: "□";
+    color: gray;
+    font-size: 30px;
+}
+
+.experiment-item.done::before {
+    content: "✅";
+    color: green;
+    font-size: 15px;
+}
+
+
+/* 右侧进度条样式 */
+.progress-bar {
+    background-color: #551a8b;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.progress-bar-inner {
+    height: 20px;
+    background-color: #d9b1fe;
+    border-radius: 4px;
+}
+
+.progress-label {
+    margin-bottom: 5px;
+}
+
+.right-sidebar {
+    width: 200px;
+    background-color: #e6e6ff;
+    padding: 20px;
+}
+
+/* 仪器模拟的样式 */
+#simulation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.simulation-item {
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    border: 2px solid #bf8cef;
+    border-radius: 20px; /* 大圆角 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #551a8b;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* 右下角的图片按钮样式 */
+.next-page-button {
+    position: fixed; /* 固定在页面右下角 */
+    bottom: 20px;    /* 距离底部 20px */
+    right: 20px;     /* 距离右侧 20px */
+    cursor: pointer; /* 鼠标悬停时显示为手型 */
+    width: 50px;     /* 图片宽度，根据需要调整 */
+    height: 50px;    /* 图片高度，根据需要调整 */
+    border: none;    /* 去掉边框 */
+    background: none;/* 去掉背景 */
+}
+
+
+/* 左上角的图片按钮样式 */
+.before-page-button {
+    position: fixed; /* 固定在页面左上角 */
+    top: 80px;    /* 距离底部 20px */
+    left: 250px;     /* 距离右侧 20px */
+    cursor: pointer; /* 鼠标悬停时显示为手型 */
+    width: 50px;     /* 图片宽度，根据需要调整 */
+    height: 50px;    /* 图片高度，根据需要调整 */
+    border: none;    /* 去掉边框 */
+    background: none;/* 去掉背景 */
+}
+
+/* 全屏button */
+.fullscreen-btn {
+    padding: 15px 20px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #551a8b; /* 紫色背景 */
+    border: none;
+    border-radius: 10px; /* 圆角 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0px;
+}
+
+
+/* 显示原图像button */
+.showpic-btn {
+    padding: 15px 20px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #551a8b; /* 紫色背景 */
+    border: none;
+    border-radius: 10px; /* 圆角 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0px;
+}
+
+
+
+/* 命令button */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* 按钮之间的间距 */
+    margin-top: 80px; /* 设置距离上边界的距离 */
+    margin-right:50px;
+}
+
+.custom-button {
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #551a8b; /* 紫色背景 */
+    border: none;
+    border-radius: 10px; /* 圆角 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #230539; /* 鼠标悬停时的背景颜色 */
+}
+
+
+
+.person {
+    position: fixed; /* 固定在页面右下角 */
+    top: 10px;    /* 距离底部 20px */
+    right: 20px;     /* 距离右侧 20px */
+    cursor: pointer; /* 鼠标悬停时显示为手型 */
+    width: 30px;     /* 图片宽度，根据需要调整 */
+    height: 30px;    /* 图片高度，根据需要调整 */
+    border: none;    /* 去掉边框 */
+    background: none;/* 去掉背景 */
+}
+
+.finish {
+    position: fixed; /* 固定在页面右下角 */
+    bottom: 30px;    /* 距离底部 20px */
+    right: 0px;     /* 距离右侧 20px */
+    cursor: pointer; /* 鼠标悬停时显示为手型 */
+    width: 200px;     /* 图片宽度，根据需要调整 */
+    height: px;    /* 图片高度，根据需要调整 */
+    border: none;    /* 去掉边框 */
+    background: none;/* 去掉背景 */
+}

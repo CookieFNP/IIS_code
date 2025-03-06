@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实验平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="title">实验平台</div>
+
+    <!-- 登录页面 -->
+
+    <div id="login-container" class="login-container">
+        <h2>登录</h2>
+        <input type="text" id="student-id" placeholder="学号">
+        <input type="password" id="password" placeholder="密码">
+        <button onclick="login()">登录</button>
+    </div>
+    <img src="person.png" alt="个人" class="person"  onclick="backhome()">
+    <!-- 实验平台的主页面 -->
+    <div id="platform-container" class="platform-container">
+        <!-- 左侧菜单栏 -->
+        <div class="sidebar">
+            <div class="menu-item active" onclick="showExperiments('basic')">基础实验</div>
+            <div class="menu-item" onclick="showExperiments('advanced')">高级实验</div>
+            <div class="menu-item" onclick="showExperiments('simulation')">仪器模拟</div>
+        </div>
+
+        <!-- 中间内容区 -->
+        <div class="main-content">
+            <div id="experiment-list">
+                <!-- 实验列表动态加载 -->
+            </div>
+            <div id="advanced-list">
+                <!-- 高级实验列表动态加载-->
+            </div>
+            <div id="simulation-container" style="display: none;">
+                <!-- 仪器模拟的内容 -->
+            </div>
+        </div>
+
+        <!-- 右侧进度条 -->
+        <div class="sidebar right-sidebar">
+            <div class="progress-bar">
+                <div class="progress-label">基础实验总任务数: <span id="online-users">10</span></div> <!-- 显示在线人数 -->
+                <div class="progress-label">高级实验总任务数: <span id="online-users">5</span></div>
+                <div class="progress-label">个人完成进度: <span id="pass-rate">5/10</span></div>
+                <div class="progress-bar-inner" style="width: 50%;"></div> <!-- 进度条 -->
+                <div class="progress-label">在线人数: <span id="online-users">10</span></div> <!-- 显示在线人数 -->
+                <div class="progress-label">可用板卡数量: <span id="pass-rate">3</span></div>
+                <div class="progress-bar-inner" style="width: 70%;"></div> <!-- 进度条 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

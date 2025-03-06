@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础实验</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="title">模拟仪器</div>
+    <img src="person.png" alt="个人" class="person" >
+
+    <div id="platform-container" class="platform-container">
+        <div class="sidebar">
+            <div class="menu-item" onclick="showExperiments('basic')">基础实验</div>
+            <div class="menu-item" onclick="showExperiments('advanced')">高级实验</div>
+            <div class="menu-item active" onclick="showExperiments('simulation')">模拟仪器</div>
+        </div>
+
+        <div class="main_shiyan">
+
+            <h5>示波器</h5>
+            <input type="file" id="dataUpload" accept=".csv" />
+            <div class="shiyan-item">
+                <canvas id="waveformCanvas" width="800" height="400"></canvas>
+            </div>
+                <div class="controls">
+                    <button id="zoomIn">Zoom In</button>
+                    <button id="zoomOut">Zoom Out</button>
+                </div>
+
+                <script>
+                    const canvas = document.getElementById('waveformCanvas');
+                    const ctx = canvas.getContext('2d');
+                    const uploadInput = document.getElementById('dataUpload');
+                    const zoomInButton = document.getElementById('zoomIn');
+                    const zoomOutButton = document.getElementById('zoomOut');
+
+                    let waveform = [];
+                    let zoomLevel = 1;
+
+                    // Function to draw the waveform
+                    function drawWaveform() {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'blue';
+                        ctx.lineWidth = 2;
+
+                        if (waveform.length === 0) return;
+
+                        const step = canvas.width / waveform.length;
+                        const amplitude = canvas.height / 2;
+
+                        waveform.forEach((value, index) => {
+                            const x = index * step;
+                            const y = canvas.height / 2 - value * amplitude * zoomLevel;
+                            if (index === 0) {
+                                ctx.moveTo(x, y);
+                            } else {
+                                ctx.lineTo(x, y);
+                            }
+                        });
+
+                        ctx.stroke();
+                    }
+
+                    // Function to handle file upload
+                    uploadInput.addEventListener('change', (event) => {
+                        const file = event.target.files[0];
+                        if (!file) return;
+
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const content = e.target.result;
+                            waveform = content.split('\n').map(line => parseFloat(line.trim()));
+                            waveform = waveform.filter(value => !isNaN(value)); // Filter out invalid values
+                            zoomLevel = 1; // Reset zoom level
+                            drawWaveform();
+                        };
+                        reader.readAsText(file);
+                    });
+
+                    // Zoom in functionality
+                    zoomInButton.addEventListener('click', () => {
+                        zoomLevel *= 1.2;
+                        drawWaveform();
+                    });
+
+                    // Zoom out functionality
+                    zoomOutButton.addEventListener('click', () => {
+                        zoomLevel /= 1.2;
+                        drawWaveform();
+                    });
+
+                    // Initial draw
+                    drawWaveform();
+                    function backhome() {
+                        window.location.href = "index.html";
+                    }
+                </script>
+            </div>
+
+
+        <div class="sidebar right-sidebar">
+            <div class="progress-bar">
+                <div class="progress-label">❇示波器是一种电子测量仪器，用于显示电信号的波形。它通过将电压信号随时间变化转换为可视图像，帮助工程师和科研人员观察信号的幅度、频率、相位等特性。广泛应用于电子电路调试、信号分析、通信等领域，是不可或缺的工具。 <span id="online-users">😊</span></div>
+            </div>
+        </div>
+    </div>
+    <img src="back_button.png" alt="下一页" class="before-page-button" onclick="backhome()">
+    <script src="scripts.js"></script>
+</body>
+</html>

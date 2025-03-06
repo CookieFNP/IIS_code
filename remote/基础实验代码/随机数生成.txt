@@ -1,0 +1,24 @@
+// 硬件连接：将数码管或LED连接到FPGA开发板的GPIO引脚，用于显示随机数。
+
+module random_number_generator (
+    input clk,          // 时钟信号
+    input reset,        // 复位信号
+    output reg [7:0] random_number // 随机数输出
+);
+
+// 内部信号
+reg [7:0] lfsr; // 线性反馈移位寄存器
+
+always @(posedge clk or negedge reset) begin
+    if (!reset) begin
+        lfsr <= 8'b1; // 初始化LFSR
+    end else begin
+        lfsr <= {lfsr[6:0], lfsr[7] ^ lfsr[3]}; // LFSR反馈逻辑
+    end
+end
+
+always @(posedge clk) begin
+    random_number <= lfsr; // 输出随机数
+end
+
+endmodule

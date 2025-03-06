@@ -1,0 +1,30 @@
+module debounce (
+    input clk,          // 时钟信号
+    input rst_n,        // 复位信号，低电平有效
+    input btn_in,       // 按键输入
+    output reg btn_out  // 消抖后的按键输出
+);
+
+// 参数定义
+parameter DEBOUNCE_DELAY = 20'd999_999; // 延时计数器的最大值
+
+// 内部信号
+reg [19:0] counter; // 延时计数器
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        counter <= 0;       // 复位计数器
+        btn_out <= 0;       // 复位按键输出
+    end else begin
+        if (btn_in == btn_out) begin
+            counter <= 0;   // 如果输入与输出相同，计数器清零
+        end else if (counter < DEBOUNCE_DELAY) begin
+            counter <= counter + 1; // 计数器递增
+        end else begin
+            counter <= 0;       // 计数器溢出，更新按键状态
+            btn_out <= btn_in;  // 更新按键输出
+        end
+    end
+end
+
+endmodule

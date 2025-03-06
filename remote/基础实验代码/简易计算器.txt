@@ -1,0 +1,81 @@
+/*
+注意硬件连接：
+
+将矩阵键盘连接到FPGA开发板的GPIO引脚，用于输入数字和运算符。
+将数码管或LED连接到FPGA开发板的GPIO引脚，用于显示结果。
+
+*/
+
+module calculator (
+    input clk,          // 时钟信号
+    input reset,        // 复位信号
+    input [3:0] L_row,  // 矩阵键盘行信号
+    output [3:0] H_col, // 矩阵键盘列信号
+    output [2:0] ABC,   // 数码管位选信号
+    output [7:0] segment // 数码管段选信号
+);
+
+// 内部信号
+wire [15:0] OP_A; // 操作数A
+wire [15:0] OP_B; // 操作数B
+wire [15:0] OP_Result; // 运算结果
+wire add, sub, mul, div; // 运算符信号
+wire enter; // 确认键信号
+
+// 分频模块，用于降低时钟频率
+div_clk i_div_clk (
+    .clk(clk),
+    .clk_500KHz(clk_500KHz)
+);
+
+// 输入模块，用于处理键盘输入
+data_input i_data_input (
+    .clk_500KHz(clk_500KHz),
+    .reset(reset),
+    .L_row(L_row),
+    .H_col(H_col),
+    .key_0_rise(key_0_p),
+    .key_1_rise(key_1_p),
+    .key_2_rise(key_2_p),
+    .key_3_rise(key_3_p),
+    .key_4_rise(key_4_p),
+    .key_5_rise(key_5_p),
+    .key_6_rise(key_6_p),
+    .key_7_rise(key_7_p),
+    .key_8_rise(key_8_p),
+    .key_9_rise(key_9_p),
+    .key_A_rise(add),
+    .key_B_rise(sub),
+    .key_C_rise(mul),
+    .key_D_rise(div),
+    .key_E_rise(esc),
+    .key_F_rise(enter)
+);
+
+// 状态控制模块，用于管理运算状态
+state_ctrl i_state_ctrl (
+    .clk(clk_500KHz),
+    .esc(esc),
+    .add(add),
+    .sub(sub),
+    .mul(mul),
+    .div(div),
+    .enter(enter),
+    .current_state(current_state),
+    .calcul(calcul)
+);
+
+// 数码管显示模块，用于显示结果
+seg_display i_seg_display (
+    .clk(clk),
+    .rst_n(reset),
+    .din(OP_Result),
+    .segment(segment),
+    .an(ABC)
+);
+
+endmodule
+
+
+
+
